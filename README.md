@@ -137,16 +137,13 @@ make
 
 ## Roadmap
 
-Add features which are available in my [Talk Calendar](https://github.com/crispinalan/talkcalendar) project.
-
-1. Refactor speech engine and add more event speech words
-2. Investigate using either a formant or diphone speech synthesizer
-3. Add more calendar features
-4. Code refactoring and testing
+1. Refactor speech engine to use either a [formant](https://github.com/crispinalan/formant-synthesizer) or [diphone speech synthesizer](https://github.com/crispinalan/diphone-speech-synthesizer)
+2. Add more calendar features
+3. Testing
 
 
 ## License
-Casper Calendar is licensed under GPL v2.0 as CopperSpice (originally derived from Qt4.8) is released under the LGPL V2.1 license.
+Casper Calendar is licensed under LGPL v2.1 as CopperSpice (originally derived from Qt4.8) is released under the LGPL V2.1 license.
 
 ## Project status
 Active, Experimental.

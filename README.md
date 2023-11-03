@@ -6,7 +6,7 @@
 
 ## Description
 
-Casper Calendar is a desktop personal calendar built with [CopperSpice](https://www.copperspice.com/) and attempts to be a ghost of my Qt [Talk Calendar](https://github.com/crispinalan/talkcalendar) project.
+Casper Calendar is a desktop personal calendar built with [CopperSpice](https://www.copperspice.com/) and attempts to be a ghost of my [Talk Calendar](https://github.com/crispinalan/talkcalendar) project.
 
 ### Note
 This is a CopperSpice project and is being developed using Debian 12 Bookworm. Please read my <ins>[guide](https://github.com/crispinalan/copperspice-debian12-guide)</ins> on how to build CopperSpice on Debian 12. This project will  <ins>not</ins> compile with Qt libraries  as although CopperSpice was initially derived from the Qt framework it has now completely diverged. CopperSpice is a totally open source project released under the LGPL V2.1 license.  With Ubuntu and other distros you can use the pre-built [CopperSpice binary files](https://download.copperspice.com/copperspice/) and then build Casper Calendar from source (see below) using these.
@@ -120,7 +120,7 @@ u = upcoming events
 
 ## Compiling Source Code
 
-Visual Studio Code or Geany can be used a source code editor for opening, viewing and then compiling the Casper Calendar files located in the src directory. Both integrate a terminal for building the application.
+Visual Studio Code or Geany (see Acknowledgements below for links) can be used a source code editor for opening, viewing and then compiling the Casper Calendar files located in the src directory. Both integrate a terminal for building the application.
 
 ### Building
 
@@ -150,7 +150,7 @@ Active, Experimental.
 
 ## Author
 
-* **Alan Crispin** [Github](https://github.com/crispinalan) and [Gitlab](https://gitlab.com/crispinalan) and
+* **Alan Crispin** [Github](https://github.com/crispinalan)
 
 
 ## Acknowledgements
@@ -161,6 +161,6 @@ Active, Experimental.
 
 * [Visual Studio Code](https://code.visualstudio.com/)  is a free source-code editor that can be used with a variety of programming languages, including  C++.
 
-* [Geany](https://www.geany.org/) is lightweight source-code editor.
+* [Geany](https://www.geany.org/) is lightweight source-code editor (uses Gtk3).
 
 

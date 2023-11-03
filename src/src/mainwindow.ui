@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="windowTitle" stdset="0">
+   <string>Talk Calendar</string>
+  </property>
+  <property name="geometry" stdset="0">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>521</width>
+    <height>487</height>
+   </rect>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <spacer name="horizontalSpacer_4">
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="orientation" stdset="0">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButtonPreviousYear">
+        <property name="text" stdset="0">
+         <string>&lt;&lt;</string>
+        </property>
+        <property name="toolTip" stdset="0">
+         <string>Previous Year</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButtonPreviousMonth">
+        <property name="text" stdset="0">
+         <string>&lt;</string>
+        </property>
+        <property name="toolTip" stdset="0">
+         <string>Previous Month</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_3">
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="orientation" stdset="0">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="labelMonthYear">
+        <property name="text" stdset="0">
+         <string>Month Year</string>
+        </property>
+        <property name="alignment" stdset="0">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="orientation" stdset="0">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButtonNextMonth">
+        <property name="text" stdset="0">
+         <string>&gt;</string>
+        </property>
+        <property name="toolTip" stdset="0">
+         <string>Next Month</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButtonNextYear">
+        <property name="text" stdset="0">
+         <string>&gt;&gt;</string>
+        </property>
+        <property name="toolTip" stdset="0">
+         <string>Next Year</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="orientation" stdset="0">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="0">
+     <widget class="QSplitter" name="splitter">
+      <property name="orientation" stdset="0">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="lineWidth" stdset="0">
+       <number>2</number>
+      </property>
+      <widget class="QTableWidget" name="tableWidgetCalendar">
+       <property name="minimumSize" stdset="0">
+        <size>
+         <width>300</width>
+         <height>200</height>
+        </size>
+       </property>
+       <attribute name="horizontalHeaderMinimumSectionSize" stdset="0">
+        <number>37</number>
+       </attribute>
+       <attribute name="verticalHeaderDefaultSectionSize" stdset="0">
+        <number>36</number>
+       </attribute>
+      </widget>
+      <widget class="QListView" name="listViewDay">
+       <property name="minimumSize" stdset="0">
+        <size>
+         <width>400</width>
+         <height>100</height>
+        </size>
+       </property>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry" stdset="0">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>521</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title" stdset="0">
+     <string>File</string>
+    </property>
+    <addaction name="actionNew"/>
+    <addaction name="actionImport_Calendar"/>
+    <addaction name="actionExport_Calendar"/>
+    <addaction name="separator"/>
+    <addaction name="actionImport_ICS_File"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title" stdset="0">
+     <string>Edit</string>
+    </property>
+    <addaction name="actionPreferences"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="menuEvent">
+    <property name="title" stdset="0">
+     <string>Event</string>
+    </property>
+    <addaction name="actionNew_Event"/>
+    <addaction name="separator"/>
+    <addaction name="actionSpeak_Event"/>
+    <addaction name="separator"/>
+    <addaction name="actionUpdate_Selected_Event"/>
+    <addaction name="separator"/>
+    <addaction name="actionDelete_All_Events"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title" stdset="0">
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <widget class="QMenu" name="menuTools">
+    <property name="title" stdset="0">
+     <string>Tools</string>
+    </property>
+    <addaction name="actionCapacity_Check"/>
+    <addaction name="separator"/>
+    <addaction name="actionSpeak_Test"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="menuNavigation">
+    <property name="title" stdset="0">
+     <string>Navigation</string>
+    </property>
+    <addaction name="actionGoto_Today"/>
+    <addaction name="actionGoto_Next_Month"/>
+    <addaction name="actionGoto_Previous_Month"/>
+    <addaction name="actionGoto_Next_Year"/>
+    <addaction name="actionGoto_Previous_Year"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuEvent"/>
+   <addaction name="menuNavigation"/>
+   <addaction name="menuTools"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionExit">
+   <property name="text" stdset="0">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionNew">
+   <property name="text" stdset="0">
+    <string>New</string>
+   </property>
+  </action>
+  <action name="actionImport_Calendar">
+   <property name="text" stdset="0">
+    <string>Import XML Calendar</string>
+   </property>
+  </action>
+  <action name="actionExport_Calendar">
+   <property name="text" stdset="0">
+    <string>Export XML Calendar</string>
+   </property>
+  </action>
+  <action name="actionPreferences">
+   <property name="text" stdset="0">
+    <string>Preferences</string>
+   </property>
+  </action>
+  <action name="actionNew_Event">
+   <property name="text" stdset="0">
+    <string>New Event (Insert Key)</string>
+   </property>
+  </action>
+  <action name="actionDelete_All_Events">
+   <property name="text" stdset="0">
+    <string>Delete All Events</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text" stdset="0">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionSpeak">
+   <property name="text" stdset="0">
+    <string>Speak</string>
+   </property>
+  </action>
+  <action name="actionUpdate_Selected_Event">
+   <property name="text" stdset="0">
+    <string>Update Selected Event</string>
+   </property>
+  </action>
+  <action name="actionGoto_Today">
+   <property name="text" stdset="0">
+    <string>Today (Home Key)</string>
+   </property>
+   <property name="icon" stdset="0">
+    <iconset>
+     <normaloff>:/icons/icon_home.png</normaloff>
+    </iconset>
+   </property>
+  </action>
+  <action name="actionCapacity_Check">
+   <property name="text" stdset="0">
+    <string>Capacity Check</string>
+   </property>
+  </action>
+  <action name="actionImport_ICS_File">
+   <property name="text" stdset="0">
+    <string>Import ICS File</string>
+   </property>
+  </action>
+  <action name="actionGoto_Next_Month">
+   <property name="text" stdset="0">
+    <string>Next Month &gt;</string>
+   </property>
+   <property name="icon" stdset="0">
+    <iconset>
+     <normaloff>:/icons/chevron-right.png</normaloff>
+    </iconset>
+   </property>
+  </action>
+  <action name="actionGoto_Previous_Month">
+   <property name="text" stdset="0">
+    <string>Previous Month &lt;</string>
+   </property>
+   <property name="icon" stdset="0">
+    <iconset>
+     <normaloff>:/icons/chevron-left.png</normaloff>
+    </iconset>
+   </property>
+  </action>
+  <action name="actionGoto_Next_Year">
+   <property name="text" stdset="0">
+    <string>Next Year &gt;&gt;</string>
+   </property>
+   <property name="icon" stdset="0">
+    <iconset>
+     <normaloff>:/icons/chevrons-right.png</normaloff>
+    </iconset>
+   </property>
+  </action>
+  <action name="actionGoto_Previous_Year">
+   <property name="text" stdset="0">
+    <string>Previous Year &lt;&lt;</string>
+   </property>
+   <property name="icon" stdset="0">
+    <iconset>
+     <normaloff>:/icons/chevrons-left.png</normaloff>
+    </iconset>
+   </property>
+  </action>
+  <action name="actionSpeak_Test">
+   <property name="text" stdset="0">
+    <string>Speak Test</string>
+   </property>
+  </action>
+  <action name="actionSave_Events">
+   <property name="text" stdset="0">
+    <string>Save Events</string>
+   </property>
+  </action>
+  <action name="actionReload_Events">
+   <property name="text" stdset="0">
+    <string>Reload Events</string>
+   </property>
+  </action>
+  <action name="actionSpeak_Event">
+   <property name="text" stdset="0">
+    <string>Speak (Spacebar)</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="../icons.qrc"/>
+ </resources>
+ <connections/>
+</ui>

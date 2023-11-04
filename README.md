@@ -48,7 +48,9 @@ A prebuilt binary for Casper Calendar is available and can be downloaded from th
 
 ![](cc-calendar-event.png)
 
-Casper Calendar can read out the event summary, time and location using the built-in diphone speech synthesizer. Press the spacebar on a date with an event.
+Casper Calendar can read out the event summary, time and location using the built-in diphone speech synthesizer.
+
+Press spacebar to speak the date and event details.
 
 A reminder can be set but Casper Calendar has to be running in the background.
 
@@ -105,11 +107,12 @@ use menu Event->Speak
 * Select "Upcoming Startup" to read out upcoming events when the calendar is started.
 
 
-### keys
+### Keyboard Shortcuts
 
 ```
 spacebar =speak
 insert = new event
+home key = goto today
 u = upcoming events
 ```
 ### How is speech generated?
@@ -123,7 +126,7 @@ The diphone speech synthesizer uses a small dictionary of approximately 56,600 E
 
 ## Compiling Source Code
 
- Geany or Visual Studio Code (see Acknowledgements below for links) can be used a source code editor for opening, viewing and then compiling the Casper Calendar files located in the src directory. Both code editors have an integrated a terminal for building the application.
+ Geany or Visual Studio Code (see Acknowledgements below for links) can be used aa a source code editor for opening, viewing and then compiling the Casper Calendar files located in the src directory. Both code editors have an integrated terminal for building the application.
 
 ### Building
 
@@ -142,7 +145,7 @@ make
 
 1. Preference options for audio playback
 2. Expand dictionary
-3. Investigate using a [formant](https://github.com/crispinalan/formant-synthesizer)
+3. Investigate using a [formant](https://github.com/crispinalan/formant-synthesizer) synthesizer
 4. Testing
 
 

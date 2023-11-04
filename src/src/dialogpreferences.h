@@ -71,6 +71,7 @@ public:
 
 	bool isTalkAtStartup();    
     bool isTalkUpcoming();
+    bool isTalkLocation();
 	int getUpcomingDayNumber();
 
  
@@ -121,6 +122,9 @@ private:
 	CS_SLOT_2(on_checkBoxAudioAlarm_stateChanged)
 
 	//Talk
+	CS_SLOT_1(Private, void on_checkBoxTalkLocation_stateChanged(int arg1))
+	CS_SLOT_2(on_checkBoxTalkLocation_stateChanged)
+	
 	CS_SLOT_1(Private, void on_checkBoxTalkStartup_stateChanged(int arg1))
 	CS_SLOT_2(on_checkBoxTalkStartup_stateChanged)
 
@@ -172,6 +176,7 @@ private:
 
   bool talkAtStartup = false;
   bool talkUpcoming = false;
+  bool talkLocation =false;
   int upcomingDays=7;
 
 

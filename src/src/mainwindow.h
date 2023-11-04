@@ -235,7 +235,7 @@ private:
   bool getIsPriority(QDate theDate);
 
   bool getIsPublicHoliday(QDate theDate);
-
+  
   //Event items
   int eventId = 0;
   QString summary = "";

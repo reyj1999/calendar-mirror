@@ -78,6 +78,16 @@ DialogPreferences::DialogPreferences(QWidget *parent, Preferences *thePreference
   {
     ui->checkBoxTalkStartup->setCheckState(Qt::Unchecked);
   }
+  
+  //location
+   if (thePreferences->m_talkLocation == false)
+  {
+    ui->checkBoxTalkLocation->setCheckState(Qt::Unchecked);
+  }
+  else
+  {
+    ui->checkBoxTalkLocation->setCheckState(Qt::Checked);
+  }
 
   // Upcoming
   if (thePreferences->m_talkUpcoming == false)
@@ -352,4 +362,16 @@ int DialogPreferences::getUpcomingDayNumber() {
 
 void DialogPreferences::on_spinBoxUpcomingDays_valueChanged(int arg1) {
   upcomingDays = arg1;
+}
+
+void DialogPreferences::on_checkBoxTalkLocation_stateChanged(int arg1) {
+  if (arg1 == Qt::Unchecked) {
+    talkLocation = false;
+  } else if (arg1 == Qt::Checked) {
+    talkLocation = true;
+  }
+}
+
+bool DialogPreferences::isTalkLocation() {
+  return talkLocation;
 }

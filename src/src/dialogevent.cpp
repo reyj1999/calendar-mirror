@@ -120,8 +120,7 @@ DialogEvent::DialogEvent(QWidget *parent, Event *theEvent) : QDialog(parent),
   //valid =false;
   this->hasReminder = theEvent->m_hasReminder;
   this->reminderMins = theEvent->m_reminderMinutes;
-  //qDebug()<<"hasReminder = "<<hasReminder;
-  //qDebug()<<"reminder minutes = "<<reminderMins;
+
 
   if (hasReminder == 1) {
     ui->checkBoxReminder->setCheckState(Qt::Checked);
@@ -154,7 +153,7 @@ DialogEvent::~DialogEvent() {
 //OK button checks
 void DialogEvent::on_pushButtonOk_clicked()
 {
-  qDebug()<<"OK button clicked";
+  //qDebug()<<"OK button clicked";
   //QDialog::accept();
 
  if (this->getSummary().isEmpty()) {
@@ -178,7 +177,7 @@ void DialogEvent::on_pushButtonOk_clicked()
     }
     else if (endDate < startDate) {
       //check if dates valid
-      qDebug()<<"error: endDate comes before startDate\n";
+      //qDebug()<<"error: endDate comes before startDate\n";
 
       QMessageBox::information(this, "Event Date Error",
                                "End date must be equal or greater than start date");
@@ -202,35 +201,15 @@ void DialogEvent::on_pushButtonOk_clicked()
 //Cancel button
 void DialogEvent::on_pushButtonCancel_clicked()
 {
-  qDebug()<<"Cancel button clicked";
+  //qDebug()<<"Cancel button clicked";
   QDialog::reject();
-}
-
-
-void DialogEvent::on_pushButtonSpeechWord_clicked()
-{
-  qDebug()<<"speech word button clicked";
-
-  DialogWords *wordsDialog = new DialogWords(this);
-   wordsDialog->setModal(true);
-
-  if (wordsDialog->exec() == QDialog::Accepted) {
-
-      qDebug()<<"wordsDialog Accepted";
-      
-      QString wordtag =wordsDialog->getSpeechWord();
-      qDebug()<<"word = "<<wordtag<<"\n";
-      ui->lineEditSummary->setText(" "+ui->lineEditSummary->text()+ wordtag+" ");
-  }
-  
 }
 
 void DialogEvent::on_dateEditStart_dateChanged(const QDate &date)
 {
-  // qDebug()<<"date = "<<date.toString();
+ 
   this->startDate = date;
-  QString startDateStr = startDate.toString();
-  qDebug() << " Start Date = " << startDateStr;
+  QString startDateStr = startDate.toString(); 
 
   if (startDate != endDate)
   {
@@ -248,7 +227,7 @@ void DialogEvent::on_dateEditEnd_dateChanged(const QDate &date)
 {
   this->endDate = date;
   QString endDateStr = endDate.toString();
-  qDebug() << " End Date = " << endDateStr;
+ 
 
   if (startDate != endDate)
   {

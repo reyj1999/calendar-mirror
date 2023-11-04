@@ -23,9 +23,7 @@
 #include <QDebug>
 #include <QMessageBox>
 
-
 #include "event.h"
-#include "dialogwords.h"
 
 namespace Ui {
 class DialogEvent;
@@ -72,8 +70,8 @@ private :
     CS_SLOT_2(on_pushButtonCancel_clicked)
 
     //speech words
-    CS_SLOT_1(Private, void on_pushButtonSpeechWord_clicked()) 
-    CS_SLOT_2(on_pushButtonSpeechWord_clicked)
+    //CS_SLOT_1(Private, void on_pushButtonSpeechWord_clicked()) 
+    //CS_SLOT_2(on_pushButtonSpeechWord_clicked)
 
     //DateEdits
     CS_SLOT_1(Private, void on_dateEditStart_dateChanged(const QDate & date))

@@ -222,8 +222,7 @@ void MainWindow::resizeEvent(QResizeEvent *e)
   //store last used size
   currentPreferences.m_windowWidth=e->size().width();
   currentPreferences.m_windowHeight=e->size().height();
-  qDebug()<<"m_windowWidth = "<< currentPreferences.m_windowWidth <<"\n";
-  qDebug()<<"m_windowHeight = "<< currentPreferences.m_windowHeight <<"\n";
+ 
 
 }
 
@@ -254,14 +253,12 @@ parseICSFile();
 
 void MainWindow::on_actionExit_triggered()
 {
-    qDebug()<<"Save settings and events";
     saveSettings();
     saveEvents();
     QApplication::quit();
 }
 void MainWindow::on_actionPreferences_triggered() {
-	 setPreferences();
-    //qDebug()<<"preferences triggered\n";
+	 setPreferences();    
 }
 
 void MainWindow::on_actionNew_Event_triggered() {
@@ -276,8 +273,7 @@ void MainWindow::on_actionSpeak_Event_triggered() {
 
 
 void MainWindow::on_actionUpdate_Selected_Event_triggered() {
-
-  //qDebug()<<"update event triggered\n";
+  
   //need to check that events exist before trying to update
   if(dayListModel->rowCount() == 0) return;  
   Event tmp = dayListModel->getEvent(selectedRowIdx); 
@@ -328,46 +324,69 @@ void MainWindow::on_actionCapacity_Check_triggered() {
 
 void MainWindow::on_actionSpeak_Test_triggered() {
 
-  qDebug()<<"speak test"; 
-  speakReminder();
-  
+		speech = new SpeechEngine();
+	speech->speak("Casper Calendar");
+	
+	QString diphonePath = QApplication::applicationDirPath() + "/diphone/";
+	
+	if (!directoryExists(diphonePath))
+	{	
+	QString str = "Diphones do not exist."
+	"\nInstall diphone folder to application path.";	
+	QMessageBox::information(this, "Diphones Missing", str);
+	return;
+	}
+	
+	if (fileExists("/tmp/talkout.wav"))
+	{	
+	QMediaPlayer *player = new QMediaPlayer;
+	player->setMedia(QUrl::fromLocalFile("/tmp/talkout.wav"));    
+	player->setPlaybackRate(1.25);  
+	player->play();
+	}
+	else
+	{
+	// to do..
+	//qDebug() << "missing talk file";
+	}
 }
 
 void MainWindow::speakReminder() {
 
-  // Check if dictionary exists
-  QString dictPath =QApplication::applicationDirPath()+"/dict/";
-
-  if(!directoryExists(dictPath)) {
-    qDebug()<<"Dictionary does not exit\n";
-    QString str ="Speak dictionary directory does not exist."
-    "\nInstall dictionary by unzipping dict.tar to application path.";
-    QMessageBox::information(this, "Speak Dictionary Missing", str);
-    return;
-  }
-   speech->generateTalkOut();
-
-  if (fileExists("/tmp/talkout.wav"))
-  {   
-
-    QMediaPlayer *player = new QMediaPlayer;
-    player->setMedia(QUrl::fromLocalFile("/tmp/talkout.wav"));    
-    player->play();
-  }
-  else
-  {
-    qDebug() << "missing talk file";
-  }
-  
+	speech = new SpeechEngine();
+	speech->speak("Casper Calendar reminder");
+	
+	QString diphonePath = QApplication::applicationDirPath() + "/diphone/";
+	
+	if (!directoryExists(diphonePath))
+	{	
+	QString str = "Diphones do not exist."
+	"\nInstall diphone folder to application path.";	
+	QMessageBox::information(this, "Diphones Missing", str);
+	return;
+	}
+		
+	if (fileExists("/tmp/talkout.wav"))
+	{	
+	QMediaPlayer *player = new QMediaPlayer;
+	player->setMedia(QUrl::fromLocalFile("/tmp/talkout.wav"));    
+	player->setPlaybackRate(1.25);  
+	player->play();
+	}
+	else
+	{
+	// to do..
+	//qDebug() << "missing talk file";
+	}	
 }
 
 
 void MainWindow::on_actionAbout_triggered() {
-  QString about_text = "Casper Calendar is a personal desktop calendar with some speech capability. "
-                       "Built with CopperSpice 1.8.2 on Debian 12 Bookworm"
-                       "\nAlan Crispin (2023)";
-  QMessageBox::information(this, "Casper Calendar v0.2.3",
-                           about_text);
+		QString about_text = "Casper Calendar is a talking calendar. "
+		"This version uses a built-in diphone speech synthesizer. "
+		"Built with CopperSpice 1.8.2 on Debian 12 Bookworm. "
+		"\nAlan Crispin (2023)";
+		QMessageBox::information(this, "Casper Calendar v0.3.0",about_text);
 }
 
 //Navigation
@@ -409,8 +428,7 @@ void MainWindow::timerUpdateSlot() {
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
-{
-    qDebug()<<"saving settings and events";
+{    
     saveSettings();
     saveEvents();
 }
@@ -431,16 +449,13 @@ void MainWindow::newEvent()
     evt.m_description = eventDialog->getDescription();
 
     QDate startDate = eventDialog->getStartDate();
-    // qDebug()<<"MainWindow: Start date: "<<startDate.toString()<<"\n";
-
     evt.m_startYear = startDate.year();
     evt.m_startMonth = startDate.month();
     evt.m_startDay = startDate.day();
     evt.m_startHour = eventDialog->getStartHour();
     evt.m_startMin = eventDialog->getStartMin();
 
-    QDate endDate = eventDialog->getEndDate();
-    // qDebug()<<"MainWindow: End date: "<<endDate.toString()<<"\n";
+    QDate endDate = eventDialog->getEndDate();   
     evt.m_endYear = endDate.year();
     evt.m_endMonth = endDate.month();
     evt.m_endDay = endDate.day();
@@ -477,7 +492,7 @@ void MainWindow::updateEvent(int id, int selectedRowindex) {
     if (eventDialog->getDeleteRequested()) {
 
       removeEventFromEventList(id);
-      //crashes ocasionally here ..try
+      //crashes ocasionally here ..try..
 
       saveEvents();
       reloadEvents();
@@ -1029,9 +1044,7 @@ void MainWindow::on_tableWidgetCalendar_cellClicked(int row, int column)
     //check if day valid
     //to be safe check that day within month range
     int daysInMonth = QDate(selectedDate.year(), selectedDate.month(), 1).daysInMonth();
-    //qDebug()<<"day value ="<<day<<"\n";
-   // qDebug()<<"days in month ="<<daysInMonth<<"\n";
-    
+   
     if (day<1 || day>daysInMonth) return; //stop selection crash    
     //update calendar only puts valid days values into the dayArray
     // and all other cells initialised to zero so
@@ -1200,6 +1213,7 @@ void MainWindow::setDefaultPreferences()
   currentPreferences.m_publicBlue = 32;
   currentPreferences.m_audioAlarm = true;
   currentPreferences.m_talkAtStartup = false;
+  currentPreferences.m_talkLocation = false;
   currentPreferences.m_talkUpcoming = false;
   currentPreferences.m_lookAheadDays = 7;
   saveSettings();
@@ -1223,6 +1237,7 @@ void MainWindow::setPreferences()
     currentPreferences.m_audioAlarm = preferencesDialog->isAudioAlarm();
     // talking
     currentPreferences.m_talkAtStartup = preferencesDialog->isTalkAtStartup();
+    currentPreferences.m_talkLocation = preferencesDialog->isTalkLocation();
     currentPreferences.m_talkUpcoming = preferencesDialog->isTalkUpcoming();
     currentPreferences.m_lookAheadDays = preferencesDialog->getUpcomingDayNumber();
 
@@ -1336,6 +1351,7 @@ bool MainWindow::loadSettings() {
   // alarm
   currentPreferences.m_audioAlarm = settings.value("AudioAlarm").toBool();
   // speaking
+  currentPreferences.m_talkLocation = settings.value("TalkLocation").toBool();
   currentPreferences.m_talkAtStartup = settings.value("TalkAtStartup").toBool();
   currentPreferences.m_talkUpcoming = settings.value("TalkUpcoming").toBool();
   currentPreferences.m_lookAheadDays = settings.value("LookAheadDays").toInt();
@@ -1380,6 +1396,7 @@ void MainWindow::saveSettings() {
   // alarm
   settings.setValue("AudioAlarm", currentPreferences.m_audioAlarm);
   // speaking
+  settings.setValue("TalkLocation", currentPreferences.m_talkLocation);
   settings.setValue("TalkAtStartup", currentPreferences.m_talkAtStartup);
   settings.setValue("TalkUpcoming", currentPreferences.m_talkUpcoming);
   settings.setValue("LookAheadDays", currentPreferences.m_lookAheadDays);
@@ -1812,7 +1829,7 @@ void MainWindow::checkForReminders() {
           }
           else
           {
-            qDebug() << "Missing reminder talk";
+            //qDebug() << "Missing reminder talk";
           }
         
         QMessageBox::information(this, "Reminder", str);
@@ -2024,69 +2041,70 @@ void MainWindow::parseICSFile() {
 }
 
 void MainWindow::upcomingSlot()
-{
-
-  qDebug() << "upcoming slot";
-
-  QString dictPath = QApplication::applicationDirPath() + "/dict/";
-
-  if (!directoryExists(dictPath))
-  {
-    QString str = "Speak directory does not exist."
-                  "\nInstall speak files by putting dict folder into application path.";
-    QMessageBox::information(this, "Speak Files Missing", str);
-    return;
-  }
-  // get upcoming events and speak them
-  speech->generateUpcomingEventsTalk(findUpcomingEvents());
-
-  if (fileExists("/tmp/upcoming.wav"))
-  {
-    QMediaPlayer *player = new QMediaPlayer;
-    player->setMedia(QUrl::fromLocalFile("/tmp/upcoming.wav"));
-    player->play();                                            
-  }
-  else
-  {
-     // to do..
-    // qDegug()<<"upcoming failed";
-  }
+{	
+	//qDebug() << "upcoming slot";	
+	speech = new SpeechEngine();
+	speech->generateUpcomingEventsTalk(findUpcomingEvents());
+	
+	QString diphonePath = QApplication::applicationDirPath() + "/diphone/";	
+	if (!directoryExists(diphonePath))
+	{	
+	QString str = "Diphones do not exist."
+	"\nInstall diphone folder to application path.";	
+	QMessageBox::information(this, "Diphones Missing", str);
+	return;
+	}
+	
+	if (fileExists("/tmp/talkout.wav"))
+	{	
+	QMediaPlayer *player = new QMediaPlayer;
+	player->setMedia(QUrl::fromLocalFile("/tmp/talkout.wav"));    
+	player->setPlaybackRate(1.25);  
+	player->play();
+	}
+	else
+	{
+	// to do..
+	//qDebug() << "missing talk file";
+	}	
 }
 
 void MainWindow::speechSlot()
 {
-
-  // Check if dictionary exists
-  QString dictPath = QApplication::applicationDirPath() + "/dict/";
-
-  if (!directoryExists(dictPath))
-  {
-    // qDebug()<<"Dictionary does not exit\n";
-    QString str = "Speak dictionary directory does not exist."
-                  "\nInstall dictionary by unzipping dict.tar to application path.";
-
-    QMessageBox::information(this, "Speak Dictionary Missing", str);
+	speech = new SpeechEngine();	
+		
+	QString diphonePath = QApplication::applicationDirPath() + "/diphone/";
+	
+	if (!directoryExists(diphonePath))
+	{     
+    QString str = "Diphones do not exist."
+	"\nInstall diphone folder to application path.";
+	
+    QMessageBox::information(this, "Diphones Missing", str);
     return;
-  }
-
-  QList<Event> dateEventList;
-  dateEventList = getTimeSortedDayList(selectedDate);
-  QList<Event> upcomingList = findUpcomingEvents();
-
-  speech->generateTalkOut(selectedDate, dateEventList, upcomingList, currentPreferences);
-
-  if (fileExists("/tmp/talkout.wav"))
-  {
-
+	}
+	
+	
+	QList<Event> dateEventList;
+    dateEventList = getTimeSortedDayList(selectedDate);
+    QList<Event> upcomingList = findUpcomingEvents();	
+	speech->generateTalkOut(selectedDate, dateEventList, upcomingList, currentPreferences);
+		
+	
+	if (fileExists("/tmp/talkout.wav"))
+	{
+	
     QMediaPlayer *player = new QMediaPlayer;
-    player->setMedia(QUrl::fromLocalFile("/tmp/talkout.wav"));
+    player->setMedia(QUrl::fromLocalFile("/tmp/talkout.wav"));    
+    player->setPlaybackRate(1.25); 
+    //player->setVolume(100); //by default the volume is 100. 
     player->play();
-  }
-  else
-  {
+	}
+	else
+	{
     // to do..
-    qDebug() << "missing talk file";
-  }
+    //qDebug() << "missing talk file";
+	}
 }
 
 QList<Event> MainWindow::findUpcomingEvents()
@@ -2095,7 +2113,7 @@ QList<Event> MainWindow::findUpcomingEvents()
   QList<Event> lookAheadList = QList<Event>();
   QDate todayDate = QDate::currentDate();
 
-  qDebug() << "lookahead days: " << currentPreferences.m_lookAheadDays;
+  //qDebug() << "lookahead days: " << currentPreferences.m_lookAheadDays;
 
   for (int j = 1; j <= currentPreferences.m_lookAheadDays; j++) // day after current
   {

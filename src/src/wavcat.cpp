@@ -17,7 +17,7 @@
 
 #include "wavcat.h"
 
-//simple wav file concatenator called WavCat
+//simple wav concatenator
 
 WavCat::WavCat()
 {
@@ -45,11 +45,11 @@ WavCat::WavCat( const std::string & filename )
     if( file.is_open() == false )
     {
         
-        std::cout<<"failed to open file"<<std::endl;
+        //std::cout<<"failed to open file"<<std::endl;
         return;
     }
     else {
-		std::cout<<"file "<<filename<<" opened"<<std::endl;
+		//std::cout<<"file "<<filename<<" opened"<<std::endl;
 	}
 
     file.read( reinterpret_cast<char*>( &riff ), RIFF_SIZE );
@@ -94,7 +94,7 @@ WavCat::WavCat( const std::string & filename )
 WavCat::WavCat( int16_t channels, int32_t samplesPerSec, int16_t bitsPerSample )
 {
     int16_t bytes = ( bitsPerSample + 7 ) / 8;
-	std::cout<<"Creating empty wav "<<std::endl;
+	//std::cout<<"Creating empty wav "<<std::endl;
     memcpy( riff.riffID, "RIFF", 4 );
     riff.riffSIZE           = 0;
 
@@ -120,11 +120,13 @@ WavCat::WavCat( int16_t channels, int32_t samplesPerSec, int16_t bitsPerSample )
 }
 
 
+
+
 WavCat WavCat::operator+( const WavCat &w )
 {
     if( fmt.wFormatTag != w.fmt.wFormatTag )  {     
-        std::cout<<"Not possible to concatenate .wav files -likley missing wav file"<<std::endl;
-        //return w
+        //std::cout<<"Not possible to concatenate .wav files with different format tags"<<std::endl;
+        //return //??
 	}
     
     WavCat res; //result

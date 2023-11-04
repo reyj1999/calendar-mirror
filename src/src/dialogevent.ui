@@ -24,13 +24,6 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButtonSpeechWord">
-       <property name="text" stdset="0">
-        <string>Insert Speech Word</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QLineEdit" name="lineEditSummary"/>
      </item>
     </layout>

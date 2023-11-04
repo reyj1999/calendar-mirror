@@ -6,10 +6,10 @@ list(APPEND caspercalendar_INCLUDES
     ${CMAKE_CURRENT_SOURCE_DIR}/daylistmodel.h
     ${CMAKE_CURRENT_SOURCE_DIR}/event.h
     ${CMAKE_CURRENT_SOURCE_DIR}/preferences.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/dialogpreferences.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/dialogwords.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/dialogpreferences.h    
     ${CMAKE_CURRENT_SOURCE_DIR}/mainwindow.h
     ${CMAKE_CURRENT_SOURCE_DIR}/speechengine.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/dictionary.h
     ${CMAKE_CURRENT_SOURCE_DIR}/wavcat.h
 
 )
@@ -22,10 +22,9 @@ list(APPEND caspercalendar_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/dialogevent.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/dialogevent.ui
     ${CMAKE_CURRENT_SOURCE_DIR}/dialogpreferences.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/dialogpreferences.ui
-    ${CMAKE_CURRENT_SOURCE_DIR}/dialogwords.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/dialogwords.ui
+    ${CMAKE_CURRENT_SOURCE_DIR}/dialogpreferences.ui  
     ${CMAKE_CURRENT_SOURCE_DIR}/speechengine.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/dictionary.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/wavcat.cpp
 
 

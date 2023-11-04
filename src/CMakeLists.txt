@@ -3,13 +3,13 @@ cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
 project(caspercalendar)
 
 set(BUILD_MAJOR "0")
-set(BUILD_MINOR "2")
-set(BUILD_MICRO "2")
+set(BUILD_MINOR "3")
+set(BUILD_MICRO "0")
 
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -Wall -Wextra")
 
 #Need to specify the PREFIX path for cmake to find copperspice libraries and definitions
-#In example below which assumes you built CS with my guide on githb replace user with your username
+#In example below which assumes you built CS with my guide on github replace user with your username
 set(CMAKE_PREFIX_PATH "/home/user/copperspice/cs_lib/lib/cmake/CopperSpice")
 
 #include following macros built into cmake

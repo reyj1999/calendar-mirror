@@ -51,6 +51,7 @@ struct Preferences {
       bool audioAlarm = false,
       //speaking
 	  bool talkUpcoming =false,
+	  bool talkLocation =false,
       bool talkAtStartup = false
 
       ) :
@@ -81,6 +82,7 @@ struct Preferences {
 		m_audioAlarm(audioAlarm),
 		//speaking
 		m_talkUpcoming(talkUpcoming),
+		m_talkLocation(talkUpcoming),
 		m_talkAtStartup(talkAtStartup)  {
   }
 
@@ -109,6 +111,7 @@ struct Preferences {
 	  
 	  bool m_audioAlarm;
 	  bool m_talkUpcoming;
+	  bool m_talkLocation;
 	  bool m_talkAtStartup;
 };
 

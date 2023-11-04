@@ -9,16 +9,20 @@
 Casper Calendar is a desktop personal calendar built with [CopperSpice](https://www.copperspice.com/) and attempts to be a ghost of my [Talk Calendar](https://github.com/crispinalan/talkcalendar) project.
 
 ### Note
-This is a CopperSpice project and is being developed using Debian 12 Bookworm. Please read my <ins>[guide](https://github.com/crispinalan/copperspice-debian12-guide)</ins> on how to build CopperSpice on Debian 12. This project will  <ins>not</ins> compile with Qt libraries  as although CopperSpice was initially derived from the Qt framework it has now completely diverged. CopperSpice is a totally open source project released under the LGPL V2.1 license.  With Ubuntu and other distros you can use the pre-built [CopperSpice binary files](https://download.copperspice.com/copperspice/) and then build Casper Calendar from source (see below) using these.
+This is a CopperSpice project and is being developed using Debian 12 Bookworm. Please read my <ins>[guide](https://github.com/crispinalan/copperspice-debian12-guide)</ins> on how to build CopperSpice on Debian 12. This project will  <ins>not</ins> compile with Qt libraries  as although CopperSpice was initially derived from the Qt framework it has now completely diverged. CopperSpice is a totally open source project released under the LGPL V2.1 license.  With Ubuntu and other distros you can use the pre-built [CopperSpice binary files](https://download.copperspice.com/copperspice/) and then build Casper Calendar from source using these (see instructions below).
 
 ### Features
 
-* built with C++ and CopperSpice 1.8.2
-* events can be entered and edited
-* events colours can be changed, priority can be  selected  and a reminder set
-* built-in word concatenation speech synthesiser for speaking dates and event keywords
+* built with C++ and CopperSpice 1.8.2 on Debian 12 Bookworm
+* bespoke calendar which allows dates with events to be marked up
+* event summary, location, description, start and end time can be entered and edited
+* events colours can be changed
+* multi-day events allowed
+* priority and is-yearly can be used
+* reminders can be set (Casper Calendar needs to be running in the background)
+* built-in diphone speech synthesizer with dictionary
+* can check and read out upcoming events
 * option to change the application font size (DPI monitors)
-* scan for upcoming events
 * xml file storage
 * ICS import (e.g. Google calendar birthdays)
 * prebuilt binary for Debian 12 distros
@@ -28,11 +32,11 @@ This is a CopperSpice project and is being developed using Debian 12 Bookworm. P
 
 ### Casper Calendar Prebuilt Binary
 
-A prebuilt binary for Casper Calendar is available and can be downloaded from the [binary folder](https://github.com/crispinalan/caspercalendar/tree/main/binary) which has been built using Debian 12 Bookworm and includes a directory called  <ins>dict</ins> containing word wav files for speaking and the CopperSpice shared libraries to run the application.
-
-The <ins>dict</ins> wav files are for testing purposes only and not of a professional standard. Replace the wav files with you own recordings to personalise your calendar. Record in mono at 8000Hz with a high tempo.
+A prebuilt binary for Casper Calendar is available and can be downloaded from the [binary folder](https://github.com/crispinalan/caspercalendar/tree/main/binary) which has been built using Debian 12 Bookworm and includes a directory called  <ins>diphones</ins> containing the diphone wav files for speaking and the CopperSpice shared libraries to run the application.
 
 ## Casper Calendar Usage
+
+
 
 ### Adding New Event
 
@@ -42,16 +46,9 @@ The <ins>dict</ins> wav files are for testing purposes only and not of a profess
 
 ![](cc-new-event.png)
 
-You can enter event speech keywords using the "Insert Speech Word" button and selecting a word from the list. You can select more than one speech keyword to identify the event or just or type them into the summary box. Consequently summary phrases like "Birthday Party", "Car Service", "Important Reminder" etc. can be used as the speech event type.
+![](cc-calendar-event.png)
 
-The speech words dialog has a search facility. You can start typing for a word e.g. "mee" and press enter and select from the results (in this case Meetup). See screenshots below.
-
-![](cc-search-words1.png)
-
-![](cc-search-words2.png)
-
-![](cc-calendar-meetup.png)
-
+Casper Calendar can read out the event summary, time and location using the built-in diphone speech synthesizer. Press the spacebar on a date with an event.
 
 A reminder can be set but Casper Calendar has to be running in the background.
 
@@ -103,11 +100,10 @@ press the spacebar
 use menu Event->Speak
 ```
 
-* Enable "Talk At Startup"  to read out the date and event details for the current day when the calendar is started.
+* Enable "Talk At Startup"  to read out the date and event for the current day when the calendar is started.
 
 * Select "Upcoming Startup" to read out upcoming events when the calendar is started.
 
-The <ins>dict</ins> wav files are for testing purposes only and not of a professional standard. Replace the wav files with you own recordings to personalise your calendar. Record in mono at 8000Hz with a high tempo.
 
 ### keys
 
@@ -116,11 +112,18 @@ spacebar =speak
 insert = new event
 u = upcoming events
 ```
+### How is speech generated?
+
+Words are formed as sequences of elementary speech units. A phoneme is the smallest unit of sound that distinguishes one word from another word and there are 44 phonemes in the English language. A diphone is a sound unit composed of two adjacent partial phonemes i.e. the second half of the first phoneme and the first half of the second phoneme. The synthesizer uses a set of pre-recorded diphone sound samples and concatenates diphone wav files to produce speech output for a given text input.
+
+The folder containing the diphone wav files should be placed into the application binary (executable) working directory. The diphone collection was created by Alan W Black and Kevin Lenzo and more information can be found using the links in the Acknowledgements. The diphone license can be found [here](https://github.com/hypnaceae/DiphoneSynth/blob/master/diphones_license.txt).
+
+The diphone speech synthesizer uses a small dictionary of approximately 56,600 English words. If a word is not recognised by the dictionary it is skipped over. More words will be added in future updates.
 
 
 ## Compiling Source Code
 
-Visual Studio Code or Geany (see Acknowledgements below for links) can be used a source code editor for opening, viewing and then compiling the Casper Calendar files located in the src directory. Both integrate a terminal for building the application.
+ Geany or Visual Studio Code (see Acknowledgements below for links) can be used a source code editor for opening, viewing and then compiling the Casper Calendar files located in the src directory. Both code editors have an integrated a terminal for building the application.
 
 ### Building
 
@@ -137,13 +140,14 @@ make
 
 ## Roadmap
 
-1. Refactor speech engine to use either a [formant](https://github.com/crispinalan/formant-synthesizer) or [diphone speech synthesizer](https://github.com/crispinalan/diphone-speech-synthesizer)
-2. Add more calendar features
-3. Testing
+1. Preference options for audio playback
+2. Expand dictionary
+3. Investigate using a [formant](https://github.com/crispinalan/formant-synthesizer)
+4. Testing
 
 
 ## License
-Casper Calendar is licensed under LGPL v2.1 as CopperSpice (originally derived from Qt4.8) is released under the LGPL V2.1 license.
+Casper Calendar is licensed under LGPL v2.1. CopperSpice is released under the LGPL V2.1 license.
 
 ## Project status
 Active, Experimental.
@@ -157,10 +161,17 @@ Active, Experimental.
 
 * [CoperSpice](https://www.copperspice.com/documentation-copperspice.html) is a set of libraries which can be used to develop cross platform  graphical applications in C++. It is an open source project released under the LGPL version 2.1 [license](https://www.copperspice.com/docs/cs_overview/main-cs-license.html)
 
-* [Guide](https://github.com/crispinalan/copperspice-debian12-guide) How to build CopperSpice on Debian 12 (Bookworm).
+* [Guide](https://github.com/crispinalan/copperspice-debian12-guide) on how to build CopperSpice on Debian 12 (Bookworm).
+
+* [Geany](https://www.geany.org/) is a lightweight source-code editor (version 2 now uses Gtk3).
 
 * [Visual Studio Code](https://code.visualstudio.com/)  is a free source-code editor that can be used with a variety of programming languages, including  C++.
 
-* [Geany](https://www.geany.org/) is lightweight source-code editor (uses Gtk3).
+* [Diphone Source and License](https://github.com/hypnaceae/DiphoneSynth/blob/master/diphones_license.txt)
+
+* Diphone collection and synthesis Alan W. Black and Kevin Lenzo [2000](https://www.cs.cmu.edu/~awb/papers/ICSLP2000_diphone/index.html.)
+
+
+
 
 

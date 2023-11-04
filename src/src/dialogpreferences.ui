@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>584</width>
-    <height>254</height>
+    <width>710</width>
+    <height>303</height>
    </rect>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -171,6 +171,26 @@
         <widget class="QCheckBox" name="checkBoxAmPmFormat">
          <property name="text" stdset="0">
           <string>AM/PM Format</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_8">
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="orientation" stdset="0">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBoxTalkLocation">
+         <property name="text" stdset="0">
+          <string>Talk Location</string>
          </property>
         </widget>
        </item>

@@ -130,7 +130,7 @@ The diphone speech synthesizer uses a small dictionary of approximately 56,600 E
 
 This is a CopperSpice application and will <ins>not</ins> compile with Qt libraries as although CopperSpice was initially derived from the Qt framework it has now completely diverged.
 
-### Debian 12 Boookworm
+### Debian 12 Bookworm
 
 To build Casper Calendar from the source code you first need to build CopperSpice. Please read my <ins>[guide](https://github.com/crispinalan/copperspice-debian12-guide)</ins> on how to build CopperSpice on Debian 12 Bookworm as at the time of writing no pre-built CopperSpice binaries are listed on their [download site](https://download.copperspice.com/copperspice/).
 
@@ -140,7 +140,7 @@ With Ubuntu 22.04 (and other Ubuntu versions) you can use the pre-built CopperSp
 
 ### Other Linux distros
 
-Please check the CopperSpice [download site](https://download.copperspice.com/) for binary downloads.
+Please check the CopperSpice [download site](https://download.copperspice.com/) for binary downloads otherwise build CopperSpice from source.
 
 
 ### Building

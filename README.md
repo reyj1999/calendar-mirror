@@ -6,7 +6,7 @@
 
 ## Description
 
-Casper Calendar is a talking desktop calendar built with [CopperSpice](https://www.copperspice.com/) and is a ghost of my Gtk4 [Talk Calendar](https://github.com/crispinalan/talkcalendar) application. It has some more functionality than my Gtk4 calendar and now uses my diphone speech synthesizer which has been re-written in C++. Pre-built binaries are available for Debian 12 Bookworm and Ubuntu 22.04.
+Casper Calendar is a talking desktop calendar built with [CopperSpice](https://www.copperspice.com/) and is a ghost of my Gtk4 [Talk Calendar](https://github.com/crispinalan/talkcalendar) application. It has some added functionality such as saving events in xml file format and event colours. It now uses my diphone speech synthesizer which has been re-written in C++. Pre-built binaries are available for Debian 12 Bookworm and Ubuntu 22.04.
 
 ### Features
 

@@ -38,6 +38,8 @@ A Casper Calendar pre-built binary for Ubuntu 22.04 can be downloaded from the [
 
 You need to run programs compiled on Debian on Debian and programs compiled on Ubuntu on Ubuntu due to ABI incompatibilites.
 
+You also need to install various [required packages](https://www.copperspice.com/docs/cs_overview/requirements-unix.html) needed by CopperSpice to run Casper Calendar. The CopperSpice link above provides a list of required packages for each distribution and any additional dependencies. Note the dependency on libx11-dev. You also need these packages if building Casper Calendar from source (see below).
+
 Use a menu editor such as [MenuLibre](https://github.com/bluesabre/menulibre) to create an application launcher for Casper Calendar and add it to the system menu.
 
 ## Casper Calendar Usage
@@ -162,10 +164,13 @@ make
 
 ## Roadmap
 
+The focus moving forward will be on the Ubuntu 22.04 version of Casper Calendar as there is an official pre-built binary for [CopperSpice](https://download.copperspice.com/copperspice/binary/cs-1.8/).
+
 1. Testing and bug fixing
 2. Preference options for audio playback
 3. Expand dictionary
 4. Investigate using a [formant](https://github.com/crispinalan/formant-synthesizer) synthesizer
+5. Packaging
 
 
 ## License

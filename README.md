@@ -6,7 +6,7 @@
 
 ## Description
 
-Casper Calendar is a talking desktop calendar built with [CopperSpice](https://www.copperspice.com/) and is a ghost of my Gtk4 [Talk Calendar](https://github.com/crispinalan/talkcalendar) application. It has some added functionality such as saving events in xml file format and event colours. It now uses my diphone speech synthesizer which has been re-written in C++. Pre-built binaries are available for Debian 12 Bookworm and Ubuntu 22.04.
+Casper Calendar is a talking desktop calendar built with [CopperSpice](https://www.copperspice.com/) and is a ghost of my Gtk4 [Talk Calendar](https://github.com/crispinalan/talkcalendar) application. It has some added functionality such as saving events in xml file format and calendar colours. It now uses my diphone speech synthesizer which has been re-written in C++. Pre-built binaries are available for Debian 12 Bookworm and Ubuntu 22.04.
 
 ### Features
 
@@ -37,6 +37,8 @@ A Casper Calendar pre-built binary for Debian 12 Bookworm can be downloaded from
 A Casper Calendar pre-built binary for Ubuntu 22.04 can be downloaded from the [binary folder](https://github.com/crispinalan/caspercalendar/tree/main/binary). It includes a directory called  <ins>diphones</ins> containing the diphone wav files for speaking and the Ubuntu CopperSpice shared libraries to run the application.
 
 You need to run programs compiled on Debian on Debian and programs compiled on Ubuntu on Ubuntu due to ABI incompatibilites.
+
+Use a menu editor such as [MenuLibre](https://github.com/bluesabre/menulibre) to create an application launcher for Casper Calendar and add it to the system menu.
 
 ## Casper Calendar Usage
 

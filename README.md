@@ -1,8 +1,6 @@
 # Casper Calendar (CopperSpice)
 
-
-![](cc-calendar-about.png)
-
+![](caspercalendar.png)
 
 ## Description
 
@@ -23,11 +21,9 @@ Casper Calendar is a talking desktop calendar built with [CopperSpice](https://w
 * ICS import (e.g. Google calendar birthdays)
 * pre-built binaries for Debian 12 and Ubuntu 22.04 distros
 
-
 ## Installation
 
 ### Casper Calendar Pre-built Binaries
-
 
 ### Ubuntu 22.04
 
@@ -40,7 +36,6 @@ sudo apt-get install libfreetype6-dev libfontconfig1-dev libglib2.0-dev libgstre
                 libgstreamer-plugins-base1.0-dev libice-dev libaudio-dev libgl1-mesa-dev libc6-dev \
                 libsm-dev libxcursor-dev libxext-dev libxfixes-dev libxi-dev libxinerama-dev \
                 libxrandr-dev libxrender-dev libxkbcommon-dev libxkbcommon-x11-dev libx11-dev
-
 ```
 
 and
@@ -54,7 +49,6 @@ sudo apt-get install libxcb1-dev libx11-xcb-dev libxcb-glx0-dev libxcb-icccm4-de
 These required packages are needed if building Casper Calendar from source (see below).
 
 Use a menu editor such as [MenuLibre](https://github.com/bluesabre/menulibre) to create an application launcher for Casper Calendar and add it to the system menu.
-
 
 ### Debian 12 Bookworm
 
@@ -85,21 +79,24 @@ A reminder can be set but Casper Calendar has to be running in the background.
 ### Editing Existing Event
 
 * Either double click on the event in the list view or select the event  and use the menu item
-```
-	Event->Update Event
-```
+  
+  ```
+    Event->Update Event
+  ```
+
 * Change details as appropriate.
 
 ### Preferences
 
 * Use the menu item
-```
-	Edit-> Calendar Preferences
-```
-to change preferences
+  
+  ```
+    Edit-> Calendar Preferences
+  ```
+  
+  to change preferences
 
 ![](cc-preferences.png)
-
 
 ### Import/Export
 
@@ -134,7 +131,6 @@ use menu Event->Speak
 
 * Select "Upcoming Startup" to read out upcoming events when the calendar is started.
 
-
 ### Keyboard Shortcuts
 
 ```
@@ -143,6 +139,21 @@ insert = new event
 home key = goto today
 u = upcoming events
 ```
+
+### Version
+
+The version number is displayed at the top of the about dialog. Use
+
+```
+Help->About
+```
+
+![](cc-calendar-about.png)
+
+## Versioning
+
+[SemVer](http://semver.org/) is used for versioning. The version number has the form 0.0.0 representing major, minor and bug fix changes.
+
 ### How is speech generated?
 
 Words are formed as sequences of elementary speech units. A phoneme is the smallest unit of sound that distinguishes one word from another word and there are 44 phonemes in the English language. A diphone is a sound unit composed of two adjacent partial phonemes i.e. the second half of the first phoneme and the first half of the second phoneme. The synthesizer uses a set of pre-recorded diphone sound samples and concatenates diphone wav files to produce speech output for a given text input.
@@ -150,7 +161,6 @@ Words are formed as sequences of elementary speech units. A phoneme is the small
 The folder containing the diphone wav files should be placed into the application binary (executable) working directory. The diphone collection was created by Alan W Black and Kevin Lenzo and more information can be found using the links in the Acknowledgements. The diphone license can be found [here](https://github.com/hypnaceae/DiphoneSynth/blob/master/diphones_license.txt).
 
 The diphone speech synthesizer uses a small dictionary of approximately 56,600 English words. If a word is not recognised by the dictionary it is skipped over. More words will be added in future updates.
-
 
 ## Building Source Code
 
@@ -168,7 +178,6 @@ To build Casper Calendar from the source code you first need to build CopperSpic
 
 Please check the CopperSpice [download site](https://download.copperspice.com/) for binary downloads otherwise build CopperSpice from source as discussed in my <ins>[guide](https://github.com/crispinalan/copperspice-debian12-guide)</ins> .
 
-
 ### Building
 
 [Geany](https://www.geany.org/) or [Visual Studio Code](https://code.visualstudio.com/) can be used as a source code editor for opening, viewing and then compiling the Casper Calendar files located in the src directory. Both code editors have an integrated terminal for building the application.
@@ -181,28 +190,25 @@ cd build
 cmake ..
 make
 ```
-## Versioning
-[SemVer](http://semver.org/) is used for versioning. The version number has the form 0.0.0 representing major, minor and bug fix changes.
 
 ## Roadmap
 
 The focus moving forward will be on the Ubuntu 22.04 version of Casper Calendar as there is an official pre-built binary for [CopperSpice](https://download.copperspice.com/copperspice/binary/cs-1.8/).
 
-
 1. Expand speaking dictionary
 2. Audio playback options
-4. Investigate using a [formant](https://github.com/crispinalan/formant-synthesizer) synthesizer
-5. Packaging
+3. Investigate using a [formant](https://github.com/crispinalan/formant-synthesizer) synthesizer
+4. Packaging
 
 ## Reflection
 
-I have found CopperSpice  to be a good set of libraries to develop C++ GUI applications. I like the fact that it uses the LGPL V2.1 license and so does not have the [license restrictions](https://www.phoronix.com/news/Qt-5.15-LTS-Commercial-Phase) imposed by [Qt](https://www.qt.io/licensing/open-source-lgpl-obligations). One thing to consider, from a Linux stand point, is Wayland compatibility. There is a discussion on the CopperSpice forum [here](https://forum.copperspice.com/viewtopic.php?t=2248).
+I have found CopperSpice  to be an excellent, stable set of libraries to develop this C++ GUI application.  I like the fact that it uses the LGPL V2.1 license and so does not have the [license restrictions](https://www.phoronix.com/news/Qt-5.15-LTS-Commercial-Phase) imposed by [Qt](https://www.qt.io/licensing/open-source-lgpl-obligations). One thing to consider, from a Linux stand point, is Wayland compatibility. Wayland has been developed as an alternative to X11 on Linux. There is a discussion on the CopperSpice forum [here](https://forum.copperspice.com/viewtopic.php?t=2248).
 
 So what other C/C++ libaries could be used?
 
 [Dear ImGui](https://www.dearimgui.com/) is a cross-platform graphical user interface library for C++ under active development. I have not used this and so cannot comment on its use. It has a [github page](https://github.com/pthom/hello_imgui). The package libimgui-dev is in the Ubuntu package repository and describes itself as "Bloat-free Immediate Mode Graphical User interface for C++".
 
-[Qt6](https://doc.qt.io/qt-6/linux.html) is the latest version of the Qt cross-platform GUI framework. The latest Qt6.5 LTS is only available to [commercial customers](https://www.phoronix.com/news/Qt-6.5-LTS-Commercial-Only). However, it appears that Qt6 versions between LTS releases can be used for open source development due to a special legal agreement with [KDE](https://kde.org/community/whatiskde/kdefreeqtfoundation/). See the [Qt Licensing](https://doc.qt.io/qt-6/licensing.html) page which has a link to purchasing and sales information.
+[Qt6](https://doc.qt.io/qt-6/linux.html) is the latest version of the Qt cross-platform GUI framework. The latest Qt6.5 LTS is only available to [commercial customers](https://www.phoronix.com/news/Qt-6.5-LTS-Commercial-Only). However, it appears that Qt6 versions between LTS releases can be used for open source development due to a special legal agreement with [KDE](https://kde.org/community/whatiskde/kdefreeqtfoundation/). See the [Qt Licensing](https://doc.qt.io/qt-6/licensing.html) page which has a link to purchasing and sales information. Qt6 has Wayland support.
 
 [wxWidgets](https://www.wxwidgets.org/) (formerly known as wxWindows) is a class library for C++ providing GUI components and uses [Gtk3](https://docs.gtk.org/gtk3/). With Debian/Ubuntu you use the libwxgtk3.2-dev package. Gtk3 is still maintained, while GTK 2 is [end-of-life](https://en.wikipedia.org/wiki/GTK);
 
@@ -210,17 +216,17 @@ So what other C/C++ libaries could be used?
 
 [Gtk5](https://www.phoronix.com/news/GTK5-Likely-After-GTK-4.12) is under development and could be [Wayland only](https://www.phoronix.com/news/GTK5-Might-Drop-X11).
 
-
 ## License
+
 Casper Calendar is licensed under LGPL v2.1. CopperSpice is released under the LGPL V2.1 license.
 
 ## Project status
+
 Active, Experimental.
 
 ## Author
 
 * **Alan Crispin** [Github](https://github.com/crispinalan)
-
 
 ## Acknowledgements
 
@@ -235,8 +241,3 @@ Active, Experimental.
 * [Diphone Source and License](https://github.com/hypnaceae/DiphoneSynth/blob/master/diphones_license.txt)
 
 * Diphone collection and synthesis Alan W. Black and Kevin Lenzo [2000](https://www.cs.cmu.edu/~awb/papers/ICSLP2000_diphone/index.html.)
-
-
-
-
-

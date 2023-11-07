@@ -6,7 +6,7 @@
 
 ## Description
 
-Casper Calendar is a talking desktop calendar built with [CopperSpice](https://www.copperspice.com/) and is a ghost of my Gtk4 [Talk Calendar](https://github.com/crispinalan/talkcalendar) application. It has some added functionality such as saving events in xml file format and calendar colours. It now uses my diphone speech synthesizer which has been re-written in C++. Pre-built binaries are available for Debian 12 Bookworm and Ubuntu 22.04.
+Casper Calendar is a talking desktop calendar built with [CopperSpice](https://www.copperspice.com/) and is a ghost of my Gtk4 [Talk Calendar](https://github.com/crispinalan/talkcalendar) application. It has some added functionality such as saving events in xml file format and calendar colours. It now uses my diphone speech synthesizer which has been re-written in C++. Pre-built binaries are available for Ubuntu 22.04 and Debian 12 Bookworm.
 
 ### Features
 
@@ -33,7 +33,7 @@ Casper Calendar is a talking desktop calendar built with [CopperSpice](https://w
 
 A Casper Calendar pre-built binary for Ubuntu 22.04 can be downloaded from the [binary folder](https://github.com/crispinalan/caspercalendar/tree/main/binary). It includes a directory called  <ins>diphones</ins> containing the diphone wav files for speaking and the Ubuntu CopperSpice shared libraries to run the application.
 
-You also need to install the CopperSpice [required packages](https://www.copperspice.com/docs/cs_overview/requirements-unix.html) For Ubuntu 22.04 the package install commands are shown below.
+You also need to install the CopperSpice [required packages](https://www.copperspice.com/docs/cs_overview/requirements-unix.html). For Ubuntu 22.04 the package install commands are shown below.
 
 ```
 sudo apt-get install libfreetype6-dev libfontconfig1-dev libglib2.0-dev libgstreamer1.0-dev \
@@ -156,17 +156,17 @@ The diphone speech synthesizer uses a small dictionary of approximately 56,600 E
 
 This is a CopperSpice application and will <ins>not</ins> compile with Qt libraries as although CopperSpice was initially derived from the Qt framework it has now completely diverged.
 
-### Debian 12 Bookworm
-
-To build Casper Calendar from the source code you first need to build CopperSpice. Please read my <ins>[guide](https://github.com/crispinalan/copperspice-debian12-guide)</ins> on how to build CopperSpice on Debian 12 Bookworm as at the time of writing no pre-built CopperSpice binaries are listed on their [download site](https://download.copperspice.com/copperspice/).
-
 ### Ubuntu 22.04
 
 With Ubuntu 22.04 (and other Ubuntu versions) you can use the pre-built CopperSpice binaries listed on their [download site](https://download.copperspice.com/copperspice/). You need to install the [required packages](https://www.copperspice.com/docs/cs_overview/requirements-unix.html#ubuntu22-cs-dev) before using the CMake build system described below.
 
+### Debian 12 Bookworm
+
+To build Casper Calendar from the source code you first need to build CopperSpice. Please read my <ins>[guide](https://github.com/crispinalan/copperspice-debian12-guide)</ins> on how to build CopperSpice on Debian 12 Bookworm as at the time of writing no pre-built CopperSpice binaries are listed on their [download site](https://download.copperspice.com/copperspice/).
+
 ### Other Linux distros
 
-Please check the CopperSpice [download site](https://download.copperspice.com/) for binary downloads otherwise build CopperSpice from source.
+Please check the CopperSpice [download site](https://download.copperspice.com/) for binary downloads otherwise build CopperSpice from source as discussed in my <ins>[guide](https://github.com/crispinalan/copperspice-debian12-guide)</ins> .
 
 
 ### Building

@@ -28,19 +28,41 @@ Casper Calendar is a talking desktop calendar built with [CopperSpice](https://w
 
 ### Casper Calendar Pre-built Binaries
 
-### Debian 12 Bookworm
-
-A Casper Calendar pre-built binary for Debian 12 Bookworm can be downloaded from the [binary folder](https://github.com/crispinalan/caspercalendar/tree/main/binary). It includes a directory called  <ins>diphones</ins> containing the diphone wav files for speaking and the Debian CopperSpice shared libraries to run the application.
 
 ### Ubuntu 22.04
 
 A Casper Calendar pre-built binary for Ubuntu 22.04 can be downloaded from the [binary folder](https://github.com/crispinalan/caspercalendar/tree/main/binary). It includes a directory called  <ins>diphones</ins> containing the diphone wav files for speaking and the Ubuntu CopperSpice shared libraries to run the application.
 
-You need to run programs compiled on Debian on Debian and programs compiled on Ubuntu on Ubuntu due to ABI incompatibilites.
+You also need to install the CopperSpice [required packages](https://www.copperspice.com/docs/cs_overview/requirements-unix.html) For Ubuntu 22.04 the package install commands are shown below.
 
-You also need to install various [required packages](https://www.copperspice.com/docs/cs_overview/requirements-unix.html) needed by CopperSpice to run Casper Calendar. The CopperSpice link above provides a list of required packages for each distribution and any additional dependencies. Note the dependency on libx11-dev. You also need these packages if building Casper Calendar from source (see below).
+```
+sudo apt-get install libfreetype6-dev libfontconfig1-dev libglib2.0-dev libgstreamer1.0-dev \
+                libgstreamer-plugins-base1.0-dev libice-dev libaudio-dev libgl1-mesa-dev libc6-dev \
+                libsm-dev libxcursor-dev libxext-dev libxfixes-dev libxi-dev libxinerama-dev \
+                libxrandr-dev libxrender-dev libxkbcommon-dev libxkbcommon-x11-dev libx11-dev
+
+```
+
+and
+
+```
+sudo apt-get install libxcb1-dev libx11-xcb-dev libxcb-glx0-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-keysyms1-dev \
+                libxcb-render0-dev libxcb-render-util0-dev libxcb-randr0-dev libxcb-shape0-dev \
+                libxcb-shm0-dev libxcb-sync-dev libxcb-xfixes0-dev libxcb-xinerama0-dev libxcb-xkb-dev
+```
+
+These required packages are needed if building Casper Calendar from source (see below).
 
 Use a menu editor such as [MenuLibre](https://github.com/bluesabre/menulibre) to create an application launcher for Casper Calendar and add it to the system menu.
+
+
+### Debian 12 Bookworm
+
+A Casper Calendar pre-built binary for Debian 12 Bookworm can be downloaded from the [binary folder](https://github.com/crispinalan/caspercalendar/tree/main/binary). It includes a directory called  <ins>diphones</ins> containing the diphone wav files for speaking and the Debian CopperSpice shared libraries to run the application.
+
+Again you need to install the CopperSpice [required packages](https://www.copperspice.com/docs/cs_overview/requirements-unix.html) for Debian.
+
+You need to run programs compiled on Debian on Debian and programs compiled on Ubuntu on Ubuntu due to ABI incompatibilites.
 
 ## Casper Calendar Usage
 
@@ -149,7 +171,7 @@ Please check the CopperSpice [download site](https://download.copperspice.com/) 
 
 ### Building
 
-[Geany](https://www.geany.org/) or [Visual Studio Code]((https://code.visualstudio.com/) can be used as a source code editor for opening, viewing and then compiling the Casper Calendar files located in the src directory. Both code editors have an integrated terminal for building the application.
+[Geany](https://www.geany.org/) or [Visual Studio Code](https://code.visualstudio.com/) can be used as a source code editor for opening, viewing and then compiling the Casper Calendar files located in the src directory. Both code editors have an integrated terminal for building the application.
 
 Then use the following terminal commands for building Casper Calendar:
 
@@ -166,11 +188,27 @@ make
 
 The focus moving forward will be on the Ubuntu 22.04 version of Casper Calendar as there is an official pre-built binary for [CopperSpice](https://download.copperspice.com/copperspice/binary/cs-1.8/).
 
-1. Testing and bug fixing
-2. Preference options for audio playback
-3. Expand dictionary
+
+1. Expand speaking dictionary
+2. Audio playback options
 4. Investigate using a [formant](https://github.com/crispinalan/formant-synthesizer) synthesizer
 5. Packaging
+
+## Reflection
+
+I have found CopperSpice  to be a good set of libraries to develop C++ GUI applications. I like the fact that it uses the LGPL V2.1 license and so does not have the [license restrictions](https://www.phoronix.com/news/Qt-5.15-LTS-Commercial-Phase) imposed by [Qt](https://www.qt.io/licensing/open-source-lgpl-obligations). One thing to consider, from a Linux stand point, is Wayland compatibility. There is a discussion on the CopperSpice forum [here](https://forum.copperspice.com/viewtopic.php?t=2248).
+
+So what other C/C++ libaries could be used?
+
+[Dear ImGui](https://www.dearimgui.com/) is a cross-platform graphical user interface library for C++ under active development. I have not used this and so cannot comment on its use. It has a [github page](https://github.com/pthom/hello_imgui). The package libimgui-dev is in the Ubuntu package repository and describes itself as "Bloat-free Immediate Mode Graphical User interface for C++".
+
+[Qt6](https://doc.qt.io/qt-6/linux.html) is the latest version of the Qt cross-platform GUI framework. The latest Qt6.5 LTS is only available to [commercial customers](https://www.phoronix.com/news/Qt-6.5-LTS-Commercial-Only). However, it appears that Qt6 versions between LTS releases can be used for open source development due to a special legal agreement with [KDE](https://kde.org/community/whatiskde/kdefreeqtfoundation/). See the [Qt Licensing](https://doc.qt.io/qt-6/licensing.html) page which has a link to purchasing and sales information.
+
+[wxWidgets](https://www.wxwidgets.org/) (formerly known as wxWindows) is a class library for C++ providing GUI components and uses [Gtk3](https://docs.gtk.org/gtk3/). With Debian/Ubuntu you use the libwxgtk3.2-dev package. Gtk3 is still maintained, while GTK 2 is [end-of-life](https://en.wikipedia.org/wiki/GTK);
+
+[Gtk4](https://www.gtk.org/) has succeeded Gtk3 and I started developing a C/Gtk4 talking calendar called Talk Calendar which can found [here](https://github.com/crispinalan/talkcalendar). This has been developed using C and callbacks for event handling. Gtk are deprecating a number of classes in Gtk4.10 (I assume in preparation for Gtk5). I had to update the C/Gtk4 Talk Calendar code on a number of occasions to remove class functions that are on the Gtk4.10 depreciation hit list. The full list of depreciated classes can be found in the [Gtk4 API](https://docs.gtk.org/gtk4/#classes).
+
+[Gtk5](https://www.phoronix.com/news/GTK5-Likely-After-GTK-4.12) is under development and could be [Wayland only](https://www.phoronix.com/news/GTK5-Might-Drop-X11).
 
 
 ## License

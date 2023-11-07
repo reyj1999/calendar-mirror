@@ -56,7 +56,7 @@ A Casper Calendar pre-built binary for Debian 12 Bookworm can be downloaded from
 
 Again you need to install the CopperSpice [required packages](https://www.copperspice.com/docs/cs_overview/requirements-unix.html) for Debian.
 
-You need to run programs compiled on Debian on Debian and programs compiled on Ubuntu on Ubuntu due to ABI incompatibilites.
+
 
 ## Casper Calendar Usage
 
@@ -202,19 +202,26 @@ The focus moving forward will be on the Ubuntu 22.04 version of Casper Calendar 
 
 ## Reflection
 
-I have found CopperSpice  to be an excellent, stable set of libraries to develop this C++ GUI application.  I like the fact that it uses the LGPL V2.1 license and so does not have the [license restrictions](https://www.phoronix.com/news/Qt-5.15-LTS-Commercial-Phase) imposed by [Qt](https://www.qt.io/licensing/open-source-lgpl-obligations). One thing to consider, from a Linux stand point, is Wayland compatibility. Wayland has been developed as an alternative to X11 on Linux. There is a discussion on the CopperSpice forum [here](https://forum.copperspice.com/viewtopic.php?t=2248).
+I have found CopperSpice to be an good stable set of libraries to develop this C++ GUI application.  I like the fact that it uses the LGPL V2.1 license and so does not have the [license restrictions](https://www.phoronix.com/news/Qt-5.15-LTS-Commercial-Phase) imposed by [Qt](https://www.qt.io/licensing/open-source-lgpl-obligations). However there are a few things to consider when using CopperSpice as outlined below.
+
+(i) ABI compatibilty. You need to use the CopperSpice shared libraries that have been built for the particular Linux distribution that you are using. That is, you need to run a program compiled on Debian on Debian and a program compiled on Ubuntu on Ubuntu. Also a program built using say the Ubuntu 22.04 CopperSpice shared libraries may not run on Ubuntu 23.10 without building CopperSpice for Ubuntu 23.10. Hopefully that make sense for anyone reading. See my guide for [building CopperSpice on Debian 12](https://github.com/crispinalan/copperspice-debian12-guide).
+
+(ii) Wayland compatibility. Wayland has been developed as an alternative to X11 on Linux. There is a discussion on CopperSpice Wayland Compatibility on their forum [here](https://forum.copperspice.com/viewtopic.php?t=2248).
 
 So what other C/C++ libaries could be used?
 
-[Dear ImGui](https://www.dearimgui.com/) is a cross-platform graphical user interface library for C++ under active development. I have not used this and so cannot comment on its use. It has a [github page](https://github.com/pthom/hello_imgui). The package libimgui-dev is in the Ubuntu package repository and describes itself as "Bloat-free Immediate Mode Graphical User interface for C++".
+[Qt5](https://doc.qt.io/qt-5.15/) is packaged with many linux distributions. The KDE project maintains a [patch collection](https://community.kde.org/Qt5PatchCollection) to support Qt 5.15 for open-source users. End of life dates can be found [here](https://endoflife.date/qt). 
 
-[Qt6](https://doc.qt.io/qt-6/linux.html) is the latest version of the Qt cross-platform GUI framework. The latest Qt6.5 LTS is only available to [commercial customers](https://www.phoronix.com/news/Qt-6.5-LTS-Commercial-Only). However, it appears that Qt6 versions between LTS releases can be used for open source development due to a special legal agreement with [KDE](https://kde.org/community/whatiskde/kdefreeqtfoundation/). See the [Qt Licensing](https://doc.qt.io/qt-6/licensing.html) page which has a link to purchasing and sales information. Qt6 has Wayland support.
+[Qt6](https://doc.qt.io/qt-6/linux.html) is the latest version of the Qt cross-platform GUI framework. The latest Qt6.5 LTS is only available to [commercial customers](https://www.phoronix.com/news/Qt-6.5-LTS-Commercial-Only). However, it appears that Qt6 versions between LTS releases can be used for open source development due to a special legal agreement with [KDE](https://kde.org/community/whatiskde/kdefreeqtfoundation/). See the [Qt Licensing](https://doc.qt.io/qt-6/licensing.html) page which has a link to purchasing and sales information. Qt6 has Wayland support. KDE [plasma 6](https://community.kde.org/Plasma/Plasma_6) is being developed using Qt6.
+
+[Dear ImGui](https://www.dearimgui.com/) is a cross-platform graphical user interface library for C++ under active development. I have not used this and so cannot comment on its use. It has a [github page](https://github.com/pthom/hello_imgui). The package libimgui-dev is in the Ubuntu package repository and describes itself as "Bloat-free Immediate Mode Graphical User interface for C++".
 
 [wxWidgets](https://www.wxwidgets.org/) (formerly known as wxWindows) is a class library for C++ providing GUI components and uses [Gtk3](https://docs.gtk.org/gtk3/). With Debian/Ubuntu you use the libwxgtk3.2-dev package. Gtk3 is still maintained, while GTK 2 is [end-of-life](https://en.wikipedia.org/wiki/GTK);
 
-[Gtk4](https://www.gtk.org/) has succeeded Gtk3 and I started developing a C/Gtk4 talking calendar called Talk Calendar which can found [here](https://github.com/crispinalan/talkcalendar). This has been developed using C and callbacks for event handling. Gtk are deprecating a number of classes in Gtk4.10 (I assume in preparation for Gtk5). I had to update the C/Gtk4 Talk Calendar code on a number of occasions to remove class functions that are on the Gtk4.10 depreciation hit list. The full list of depreciated classes can be found in the [Gtk4 API](https://docs.gtk.org/gtk4/#classes).
+[Gtk4](https://www.gtk.org/) has succeeded Gtk3 and I started developing a C/Gtk4 talking calendar called Talk Calendar which can found [here](https://github.com/crispinalan/talkcalendar). This has been developed using C and callbacks for event handling. Gtk are deprecating a number of classes in Gtk4.10 (I assume in preparation for Gtk5). I had to update the C/Gtk4 Talk Calendar code on a number of occasions to remove class functions that are on the Gtk4.10 depreciation hit list. The full list of depreciated classes can be found in the [Gtk4 API](https://docs.gtk.org/gtk4/#classes). The advantage of using Gtk4 is that it is packaged as standard with many linux distributions (Debian, Ubuntu, Fedora) and so in theory compiled GUI applications should run without installing any addtional dependencies. Wayland compatible.
 
 [Gtk5](https://www.phoronix.com/news/GTK5-Likely-After-GTK-4.12) is under development and could be [Wayland only](https://www.phoronix.com/news/GTK5-Might-Drop-X11).
+
 
 ## License
 

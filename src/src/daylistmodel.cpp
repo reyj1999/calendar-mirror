@@ -31,7 +31,7 @@ DayListModel::DayListModel(const QList<Event> &eventList, QObject *parent) {
 //-------------------------------------
 void  DayListModel::timeSortDayList() {
 
-   //do it manually sas qSort no longer available
+   //do it manually as qSort no longer available
    int n;
    int i;
    for (n=0; n < modelEventList.count(); n++)
